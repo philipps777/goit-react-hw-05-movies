@@ -30,9 +30,7 @@ const MoviesDetails = () => {
   return (
     <>
       <span>
-        <Link to={backLinkHref}>
-          Go back<span>.</span>
-        </Link>
+        <Link to={backLinkHref}>Go back</Link>
       </span>
       <div>
         <img
@@ -61,12 +59,12 @@ const MoviesDetails = () => {
         <ul>
           <li>
             <NavLink to="cast" state={location.state}>
-              Cast<span>.</span>
+              Cast
             </NavLink>
           </li>
           <li>
             <NavLink to="reviews" state={location.state}>
-              Reviews<span>.</span>
+              Reviews
             </NavLink>
           </li>
         </ul>

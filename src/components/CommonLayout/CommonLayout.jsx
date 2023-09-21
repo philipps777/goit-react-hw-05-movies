@@ -8,14 +8,10 @@ const CommonLayout = () => {
         <nav>
           <ul>
             <li>
-              <Link to="/">
-                Home<span>.</span>
-              </Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/movies">
-                Movies<span>.</span>
-              </Link>
+              <Link to="/movies">Movies</Link>
             </li>
           </ul>
         </nav>
