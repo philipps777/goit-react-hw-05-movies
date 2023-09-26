@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCastMovie } from 'api';
 import { BASE_POSTER_URL, PLACEHOLDER } from 'images/ImagesNotFound';
-
+import { List, ListItem } from '../Cast/Cast.styled';
+import { FilmSubTitle } from 'pages/MoviesDetails/MoviesDetails.styled';
 const Cast = () => {
   const { movieId } = useParams();
 
@@ -23,9 +24,9 @@ const Cast = () => {
   return (
     <>
       {
-        <ul>
+        <List>
           {cast.map(({ id, profile_path, original_name, character }) => (
-            <li key={id}>
+            <ListItem key={id}>
               <img
                 src={`${
                   profile_path
@@ -35,14 +36,14 @@ const Cast = () => {
                 alt={original_name}
               />
               <p>
-                <span> Actor:</span> {original_name}
+                <FilmSubTitle>Actor:</FilmSubTitle> {original_name}
               </p>
               <p>
-                <span>Character:</span> {character}
+                <FilmSubTitle>Character:</FilmSubTitle> {character}
               </p>
-            </li>
+            </ListItem>
           ))}
-        </ul>
+        </List>
       }
     </>
   );

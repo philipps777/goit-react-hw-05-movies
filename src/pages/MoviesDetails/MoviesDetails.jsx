@@ -8,6 +8,19 @@ import {
 } from 'react-router-dom';
 import { getMovieById } from 'api';
 import { BASE_POSTER_URL, PLACEHOLDER } from '../../images/ImagesNotFound';
+import { Button } from 'components/Form/Form.styled';
+import { Section } from 'components/CommonLayout/SharedLayout .styled';
+import {
+  FilmImg,
+  FilmTitle,
+  FilmWrapper,
+  GoBackWrapper,
+  FilmSubTitle,
+  FilmDescr,
+  StyledListDescr,
+  StyledList,
+  ListItem,
+} from './MoviesDetails.styled';
 
 const MoviesDetails = () => {
   const { movieId } = useParams();
@@ -26,52 +39,63 @@ const MoviesDetails = () => {
     };
     fetchMovieById();
   }, [movieId]);
+  if (!movie) {
+    return;
+  }
 
   return (
     <>
-      <span>
-        <Link to={backLinkHref}>Go back</Link>
-      </span>
-      <div>
-        <img
-          src={`${
-            movie.poster_path
-              ? BASE_POSTER_URL + movie.poster_path
-              : PLACEHOLDER + '?text=' + movie.original_title
-          }`}
-          alt="get"
-        />
+      <Section>
+        <GoBackWrapper>
+          <span>
+            <Button>
+              <Link to={backLinkHref}>Go back</Link>
+            </Button>
+          </span>
+        </GoBackWrapper>
+        <FilmWrapper>
+          <FilmImg
+            src={`${
+              movie.poster_path
+                ? BASE_POSTER_URL + movie.poster_path
+                : PLACEHOLDER + '?text=' + movie.original_title
+            }`}
+            alt="get"
+          />
+          <div>
+            <FilmTitle>{movie.original_title}</FilmTitle>
+            <FilmSubTitle>
+              Rating: {Math.round(movie.vote_average)}
+            </FilmSubTitle>
+            <FilmSubTitle>Overview</FilmSubTitle>
+            <FilmDescr>{movie.overview}</FilmDescr>
+            <FilmSubTitle>Genres</FilmSubTitle>
+            <StyledListDescr>
+              {movie.genres?.map(genre => (
+                <li key={genre.id}>{genre.name}</li>
+              ))}
+            </StyledListDescr>
+          </div>
+        </FilmWrapper>
         <div>
-          <h2>{movie.original_title}</h2>
-          <h3>Rating: {Math.round(movie.vote_average)}</h3>
-          <h3>Overview</h3>
-          <p>{movie.overview}</p>
-          <h3>Genres</h3>
-          <ul>
-            {movie.genres?.map(genre => (
-              <li key={genre.id}>{genre.name}</li>
-            ))}
-          </ul>
+          <FilmTitle>Additional information</FilmTitle>
+          <StyledList>
+            <ListItem>
+              <NavLink to="cast" state={location.state}>
+                <Button>Cast</Button>
+              </NavLink>
+            </ListItem>
+            <ListItem>
+              <NavLink to="reviews" state={location.state}>
+                <Button>Reviews</Button>
+              </NavLink>
+            </ListItem>
+          </StyledList>
+          <Suspense fallback={<div>Loading subpage...</div>}>
+            <Outlet />
+          </Suspense>
         </div>
-      </div>
-      <div>
-        <h2>Additional information</h2>
-        <ul>
-          <li>
-            <NavLink to="cast" state={location.state}>
-              Cast
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="reviews" state={location.state}>
-              Reviews
-            </NavLink>
-          </li>
-        </ul>
-        <Suspense fallback={<div>Loading subpage...</div>}>
-          <Outlet />
-        </Suspense>
-      </div>
+      </Section>
     </>
   );
 };

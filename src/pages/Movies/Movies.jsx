@@ -4,6 +4,7 @@ import { getMovieByQuery } from 'api';
 
 import Form from '../../components/Form/Form';
 import FilmsList from '../../components/FilmList/FilmList';
+import { Container } from 'components/CommonLayout/SharedLayout .styled';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -27,7 +28,9 @@ const Movies = () => {
   return (
     <>
       <Form setSearchParams={setSearchParams} />
-      {movies.length > 0 && <FilmsList movies={movies} />}
+      <Container>
+        {movies.length > 0 && <FilmsList movies={movies} />}
+      </Container>
     </>
   );
 };
