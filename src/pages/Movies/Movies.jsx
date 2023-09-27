@@ -4,7 +4,7 @@ import { getMovieByQuery } from 'api';
 
 import Form from '../../components/Form/Form';
 import FilmsList from '../../components/FilmList/FilmList';
-import { Container } from 'components/CommonLayout/SharedLayout .styled';
+import { Container } from 'components/CommonLayout/SharedLayout.styled';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);

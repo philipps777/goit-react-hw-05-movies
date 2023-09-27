@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const MovieList = styled.ul`
+  display: 'flex';
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 25px;
+`;
+
 export const MovieCardWrapper = styled.li`
   display: flex;
   flex-direction: column;

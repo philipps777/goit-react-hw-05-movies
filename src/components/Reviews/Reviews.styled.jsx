@@ -8,7 +8,7 @@ export const StyledList = styled.ul`
 export const ListItem = styled.li`
   font-size: 14px;
   padding: 6px;
-  //   background-color: #2a2a2a;
+
   border-radius: 14px;
 
   :not(:last-child) {

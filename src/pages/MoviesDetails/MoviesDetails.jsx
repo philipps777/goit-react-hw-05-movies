@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, useRef } from 'react';
 import {
   Link,
   NavLink,
@@ -9,7 +9,7 @@ import {
 import { getMovieById } from 'api';
 import { BASE_POSTER_URL, PLACEHOLDER } from '../../images/ImagesNotFound';
 import { Button } from 'components/Form/Form.styled';
-import { Section } from 'components/CommonLayout/SharedLayout .styled';
+import { Section } from 'components/CommonLayout/SharedLayout.styled';
 import {
   FilmImg,
   FilmTitle,
@@ -27,7 +27,7 @@ const MoviesDetails = () => {
   const [movie, setMovie] = useState('');
   const location = useLocation();
 
-  const backLinkHref = location.state?.from ?? '/movies';
+  const backLinkHref = useRef(location.state?.from ?? '/movies');
   useEffect(() => {
     const fetchMovieById = async () => {
       try {
@@ -49,7 +49,7 @@ const MoviesDetails = () => {
         <GoBackWrapper>
           <span>
             <Button>
-              <Link to={backLinkHref}>Go back</Link>
+              <Link to={backLinkHref.current}>Go back</Link>
             </Button>
           </span>
         </GoBackWrapper>
@@ -81,12 +81,12 @@ const MoviesDetails = () => {
           <FilmTitle>Additional information</FilmTitle>
           <StyledList>
             <ListItem>
-              <NavLink to="cast" state={location.state}>
+              <NavLink to="cast">
                 <Button>Cast</Button>
               </NavLink>
             </ListItem>
             <ListItem>
-              <NavLink to="reviews" state={location.state}>
+              <NavLink to="reviews">
                 <Button>Reviews</Button>
               </NavLink>
             </ListItem>
