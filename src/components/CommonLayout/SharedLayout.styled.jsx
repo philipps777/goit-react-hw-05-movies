@@ -41,7 +41,6 @@ export const Container = styled.div`
 export const Section = styled.div`
   margin-top: 124px;
   margin-bottom: 15px;
-  padding: 0 70px;
 `;
 
 export const Navigation = styled.nav`
